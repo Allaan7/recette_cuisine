@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+    {% for recette in recettes %}
+
+        <div class="card" style="width: 18rem;">
+            <img src="uploads/{{ asset(recette.getUrlImg)}}" class="card-img-top" alt="{{recette.titre}}">
+            <div class="card-body">
+                <h5 class="card-title">{{recette.titre}}</h5>
+                <div class="d-flex justify-content-between">
+                    <a href="{{ path('app_recette', {'id':recette.id}) }}" class="btn btn-primary">Voir détails</a>
+                    <a href="{{ path('app_like', {'id':recette.id}) }}" class="btn btn-primary"><i class="fa-solid fa-thumbs-up"></i>{{ recette.users | length }}</a>
+                    {% if app.user %} 
+                        {% if app.user.roles.0 == 'ROLE_ADMIN' %}
+                            <a href="{{ path('app_delete', {'id':recette.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if app.user %}
+                        {% if app.user.id == recette.user.id %}
+                            <a href="{{ path('app_update', {'id':recette.id}) }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        {% endif %}
+                    {% endif %} 
+
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

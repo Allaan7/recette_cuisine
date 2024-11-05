@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}  {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="card mb-3">
+            <div class="img-card">
+                <img src="{{ asset('uploads/' ~ recette.getUrlImg)}}" class="card-img-top" alt="{{recette.titre}}">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{recette.titre}}</h5>
+                    <p class="card-text">{{recette.description}}</p>
+                    <p>Publié par: <em>{{recette.user.prenom}} {{recette.user.nom}}</em></p>
+                <div class="d-flex justify-content-between">
+                    <a href="{{ path('app_like', {'id':recette.id}) }}" class="btn btn-primary"><i class="fa-solid fa-thumbs-up"></i>{{ recette.users | length }}</a>
+                </div>
+                {{ form_start(form) }}
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div>
+            {% for commentaire in recette.commentaires %}
+                <p>Commentaire ecrit par: {{commentaire.user.prenom}}</p>
+                <p>{{commentaire.content}}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

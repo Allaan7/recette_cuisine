@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Inscription {% endblock %} 
+
+{% block body %}
+<div class="container">
+    {{ form_start(form) }}
+        {# Le prénom #}
+        <div class="mb-3">
+            {{ form_label(form.prenom) }}
+            {{ form_widget(form.prenom) }}
+        </div>
+
+        {# Le nom #}
+        <div class="mb-3">
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom) }}
+        </div>
+
+        {# L'email #}
+        <div class="mb-3">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+
+        {# Le mot de passe #}
+        <div class="mb-3">
+            {{ form_label(form.password) }}
+            {{ form_widget(form.password) }}
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
+
+

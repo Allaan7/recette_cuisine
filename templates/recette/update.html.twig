@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modifier une recette {% endblock %}
+
+{% block body %}
+<div id="container">
+    {{ form_start(form) }}
+        {{ form_label(form.titre) }}
+        {{ form_widget(form.titre, {'attr': {'value': recette.titre}}) }}
+
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description, {'attr': {'': recette.description}}) }}
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path('app_home') }}">Accueil</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    {# si l'utilisateur est connecté #}
+      <div class="navbar-nav">
+      {% if app.user %}
+        <a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
+        <a class="nav-link" href="{{ path('app_add')}}" aria-disabled="true">Publier une recette</a>
+
+        {% if app.user.roles.0 == 'ROLE_ADMIN' %}
+          <a class="nav-link" href="{{ path('app_users') }}">Les Utilisateurs</a>
+
+        {% endif %}
+      {% else %}
+        <a class="nav-link active" aria-current="page" href="{{ path('app_inscription') }}">Inscription</a>
+        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+      {% endif %}
+
+
+       
+
+      </div>
+    </div>
+  </div>
+</nav>

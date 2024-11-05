@@ -1,0 +1,11 @@
+# users
+    - id (int auto)
+    - nom (string)
+    - prenom (string)
+    - email (string unique)
+    - password (string)
+    - craate_at (date)
+
+# recettes
+    - id (int auto)
+    - titre (string)
